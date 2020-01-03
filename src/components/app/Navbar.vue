@@ -54,7 +54,7 @@ export default {
   },
   methods: {
     logout() {
-      this.$router.push("/login?massage=logout");
+      this.$router.push("/login?message=logout");
     }
   },
   beforeDestroy() {

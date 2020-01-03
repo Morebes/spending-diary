@@ -9,12 +9,31 @@
       <div>
         <p>
           <strong>Девушка:</strong>
-          12 122 из 14 0000
+          {{ this.goal.now }} из {{ this.goal.goal }} ({{ style }}%)
         </p>
         <div class="progress">
-          <div class="determinate green" style="width:40%"></div>
+          <div class="determinate green" :style="`width:${style}%`"></div>
         </div>
       </div>
     </section>
   </div>
 </template>
+<script>
+export default {
+  data() {
+    return {
+      goal: { now: 16226, goal: 14000 }
+    };
+  },
+  computed: {
+    style() {
+      let a = Math.round(this.goal.now / (this.goal.goal / 100));
+
+      if (a >= 100) {
+        return 100;
+      }
+      return a;
+    }
+  }
+};
+</script>
