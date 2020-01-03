@@ -18,11 +18,13 @@
         <small
           class="helper-text invalid"
           v-if="$v.email.$dirty && !$v.email.required"
-        >поле имеил не должно быть пустым</small>
+          >поле имеил не должно быть пустым</small
+        >
         <small
           class="helper-text invalid"
           v-else-if="$v.email.$dirty && !$v.email.email"
-        >введите корректный имеил</small>
+          >введите корректный имеил</small
+        >
       </div>
 
       <div class="input-field">
@@ -40,17 +42,23 @@
         <small
           class="helper-text invalid"
           v-if="$v.password.$dirty && !$v.password.required"
-        >введите Пароль</small>
+          >введите Пароль</small
+        >
         <small
           class="helper-text invalid"
           v-else-if="$v.email.$dirty && !$v.password.minLength"
-        >введите корректный пароль</small>
+          >введите корректный пароль</small
+        >
       </div>
 
       <div class="input-field">
         <input id="name" type="text" v-model.trim="name" />
         <label for="name">Имя</label>
-        <small class="helper-text invalid" v-if="$v.name.$dirty && !$v.name.required">введите имя</small>
+        <small
+          class="helper-text invalid"
+          v-if="$v.name.$dirty && !$v.name.required"
+          >введите имя</small
+        >
       </div>
       <p>
         <label>
@@ -59,7 +67,7 @@
         </label>
       </p>
     </div>
-    
+
     <div class="card-action">
       <div>
         <button class="btn waves-effect waves-light auth-submit" type="submit">
@@ -77,7 +85,7 @@
 </template>
 
 <script>
-import { email, required, minLength } from "vuelidate/lib/validators";
+import { email, required, minLength } from "vuelidate/lib/validators"
 
 export default {
   name: "register",
@@ -88,7 +96,7 @@ export default {
       password: "",
       agree: false,
       name: null
-    };
+    }
   },
 
   validations: {
@@ -99,20 +107,23 @@ export default {
   },
 
   methods: {
-    subminHendler() {
+    async subminHendler() {
       if (this.$v.$invalid) {
-        this.$v.$touch();
-        return;
+        this.$v.$touch()
+        return
       }
 
       const formDate = {
         email: this.email,
         password: this.password,
         name: this.name
-      };
+      }
 
-      this.$router.push("/");
+      try {
+        await this.$store.dispatch("register", formDate)
+        this.$router.push("/")
+      } catch (e) {}
     }
   }
-};
+}
 </script>
