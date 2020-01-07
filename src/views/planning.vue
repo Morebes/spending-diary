@@ -25,6 +25,7 @@ export default {
       goal: { now: 16226, goal: 14000 }
     };
   },
+
   computed: {
     style() {
       let a = Math.round(this.goal.now / (this.goal.goal / 100));

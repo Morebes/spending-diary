@@ -6,8 +6,8 @@
 
     <form class="form">
       <div class="input-field">
-        <input id="description" type="text" />
-        <label for="description">Имя</label>
+        <input id="description" type="text" v-model="newName" />
+        <label for="description">{{name}}</label>
         <span class="helper-text invalid">name</span>
       </div>
 
@@ -18,3 +18,18 @@
     </form>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      newName: null
+    };
+  },
+  computed: {
+    name() {
+      return this.$store.getters.info.name;
+    }
+  }
+};
+</script>
