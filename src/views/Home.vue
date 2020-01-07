@@ -20,6 +20,7 @@
 <script>
 import HomeBill from "@/components/HomeBill";
 import HomeCurrency from "@/components/HomeCurrency";
+
 export default {
   components: { HomeBill, HomeCurrency },
   data() {

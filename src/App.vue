@@ -8,7 +8,7 @@
 
 <script>
 import EmptyLayout from "@/layout/EmptyLayout";
-import MainLayout from "@/layout/mainLayout";
+import MainLayout from "@/layout/MainLayout";
 
 export default {
   computed: {
