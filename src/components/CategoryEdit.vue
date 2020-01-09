@@ -14,14 +14,14 @@
         </div>
 
         <div class="input-field">
-          <input type="text" id="name" />
-          <label for="name">Название</label>
+          <input type="text" id="title" />
+          <label for="title">Название</label>
           <span class="helper-text invalid">TITLE</span>
         </div>
 
         <div class="input-field">
-          <input id="limit" type="number" />
-          <label for="limit">Лимит</label>
+          <input id="limitValue" type="number" />
+          <label for="limitValue">Лимит</label>
           <span class="helper-text invalid">LIMIT</span>
         </div>
 

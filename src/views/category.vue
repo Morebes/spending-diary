@@ -28,8 +28,6 @@ export default {
   methods: {
     addNewCategories(category) {
       this.categories.push(category);
-
-      console.log(this.categories);
     }
   }
 };
