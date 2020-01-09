@@ -1,40 +1,41 @@
 <template>
-  <div>
+  <Loader v-if="loaging" />
+
+  <div v-else>
     <div class="page-title">
       <h3>Планирование</h3>
       <h4>12 212</h4>
     </div>
 
-    <section>
+    <section v-for="category in categories" :key="category['title']">
       <div>
         <p>
-          <strong>Девушка:</strong>
-          {{ this.goal.now }} из {{ this.goal.goal }} ({{ style }}%)
+          <strong>{{category['title']}}:</strong>
+          из {{category['limit']}}
         </p>
         <div class="progress">
-          <div class="determinate green" :style="`width:${style}%`"></div>
+          <div class="determinate green" :style="`width:10%`"></div>
         </div>
       </div>
     </section>
   </div>
 </template>
+
 <script>
+import Loader from "@/components/app/Loader";
 export default {
+  name: "Planing",
+  components: { Loader },
   data() {
     return {
-      goal: { now: 16226, goal: 14000 }
+      category: null,
+      loaging: true
     };
   },
 
-  computed: {
-    style() {
-      let a = Math.round(this.goal.now / (this.goal.goal / 100));
-
-      if (a >= 100) {
-        return 100;
-      }
-      return a;
-    }
+  async mounted() {
+    this.categories = await this.$store.dispatch("fetchCategories");
+    this.loaging = false;
   }
 };
 </script>

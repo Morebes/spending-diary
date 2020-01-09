@@ -45,6 +45,7 @@
 
 <script>
 import { required, minValue } from "vuelidate/lib/validators";
+
 export default {
   data() {
     return {
