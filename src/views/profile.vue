@@ -4,7 +4,7 @@
       <h3>Профиль</h3>
     </div>
 
-    <form class="form">
+    <form class="form" @submit.prevent="submitHendler">
       <div class="input-field">
         <input id="description" type="text" v-model="newName" />
         <label for="description">{{name}}</label>
@@ -26,10 +26,15 @@ export default {
       newName: null
     };
   },
+
   computed: {
     name() {
       return this.$store.getters.info.name;
     }
+  },
+
+  methods: {
+    submitHendler() {}
   }
 };
 </script>

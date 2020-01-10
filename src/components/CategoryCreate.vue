@@ -11,12 +11,12 @@
             id="name"
             type="text"
             v-model="title"
-            :class="{invalid:$v.title.$dirty && !$v.title.requerid}"
+            :class="{invalid:$v.title.$dirty && !$v.title.required}"
           />
           <label for="name">Название</label>
           <span
             class="helper-text invalid"
-            v-if="$v.title.$dirty && !$v.title.requerid"
+            v-if="$v.title.$dirty && !$v.title.required"
           >Введите название</span>
         </div>
 
