@@ -6,9 +6,17 @@
 
     <form class="form" @submit.prevent="submitHendler">
       <div class="input-field">
-        <input id="description" type="text" v-model="newName" />
-        <label for="description">{{name}}</label>
-        <span class="helper-text invalid">name</span>
+        <input
+          id="Name"
+          type="text"
+          v-model.trim="newName"
+          :class="{invalid:$v.newName.$dirty && !$v.newName.required}"
+        />
+        <label for="Name">Описание</label>
+        <span
+          class="helper-text invalid"
+          v-if="$v.newName.$dirty && !$v.newName.required"
+        >Введите имя</span>
       </div>
 
       <button class="btn waves-effect waves-light" type="submit">
@@ -20,11 +28,16 @@
 </template>
 
 <script>
+import { required } from "vuelidate/lib/validators";
+
 export default {
   data() {
     return {
       newName: null
     };
+  },
+  validations: {
+    newName: { required }
   },
 
   computed: {
@@ -34,7 +47,19 @@ export default {
   },
 
   methods: {
-    submitHendler() {}
+    async submitHendler() {
+      if (this.$v.$invalid) {
+        this.$v.$touch();
+        return;
+      }
+
+      const name = this.newName;
+
+      await this.$store.dispatch("updateInfo", { name });
+      this.$message("имя изменено");
+      this.$v.$reset();
+      this.newName = "";
+    }
   }
 };
 </script>
