@@ -12,7 +12,7 @@
           v-model.trim="newName"
           :class="{invalid:$v.newName.$dirty && !$v.newName.required}"
         />
-        <label for="Name">Описание</label>
+        <label for="Name">Имя</label>
         <span
           class="helper-text invalid"
           v-if="$v.newName.$dirty && !$v.newName.required"
