@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Профиль</h3>
+      <h3>{{'ProfileTitle' | localize}}</h3>
     </div>
 
     <form class="form" @submit.prevent="submitHendler">
@@ -9,18 +9,27 @@
         <input
           id="Name"
           type="text"
-          v-model.trim="newName"
-          :class="{invalid:$v.newName.$dirty && !$v.newName.required}"
+          v-model.trim="name"
+          :class="{ invalid: $v.name.$dirty && !$v.name.required }"
         />
-        <label for="Name">{{name}}</label>
+        <label for="Name">{{'Name'| localize}}</label>
         <span
           class="helper-text invalid"
-          v-if="$v.newName.$dirty && !$v.newName.required"
-        >Введите имя</span>
+          v-if="$v.name.$dirty && !$v.name.required"
+        >{{'Message_EnterName' | localize}}</span>
+      </div>
+
+      <div class="switch">
+        <label>
+          English
+          <input type="checkbox" v-model="isRuLocale" />
+          <span class="lever"></span>
+          Русский
+        </label>
       </div>
 
       <button class="btn waves-effect waves-light" type="submit">
-        Обновить
+        {{'Update' | localize}}
         <i class="material-icons right">send</i>
       </button>
     </form>
@@ -28,38 +37,53 @@
 </template>
 
 <script>
-import { required } from "vuelidate/lib/validators"
+import { required } from 'vuelidate/lib/validators'
 
 export default {
   data() {
     return {
-      newName: null
-    };
-  },
-  validations: {
-    newName: { required }
+      name: null,
+      isRuLocale: true
+    }
   },
 
-  computed: {
-    name() {
-      return this.$store.getters.info.name;
-    }
+  validations: {
+    name: { required }
+  },
+
+  computed: {},
+
+  mounted() {
+    this.name = this.$store.getters.info.name
+    this.isRuLocale = this.$store.getters.info.locale === 'ru-RU'
+
+    setTimeout(() => {
+      M.updateTextFields()
+    }, 0)
   },
 
   methods: {
     async submitHendler() {
       if (this.$v.$invalid) {
         this.$v.$touch()
-        return;
+        return
       }
 
-      const name = this.newName;
+      try {
+        await this.$store.dispatch('updateInfo', {
+          name: this.name,
+          locale: this.isRuLocale ? 'ru-RU' : 'en-US'
+        })
+      } catch (e) {}
 
-      await this.$store.dispatch("updateInfo", { name })
-      this.$message("имя изменено");
-      this.$v.$reset();
-      this.newName = ""
+      this.$v.$reset()
     }
   }
-};
+}
 </script>
+
+<style scoped>
+.switch {
+  margin-bottom: 2rem;
+}
+</style>

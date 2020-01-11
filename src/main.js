@@ -5,6 +5,7 @@ import vuelidate from 'vuelidate'
 import Paginate from 'vuejs-paginate'
 import dateFilter from '@/filter/date.filter'
 import currencyFilter from '@/filter/currency.filter'
+import localizeFilter from '@/filter/localize.filter'
 import tooltipdirective from '@/directives/tooltip.directive'
 import store from './store'
 import messagePlagin from '@/utils/message.plagin'
@@ -20,6 +21,7 @@ Vue.config.productionTip = false
 
 Vue.filter("date", dateFilter)
 Vue.filter("currency", currencyFilter)
+Vue.filter("localize", localizeFilter)
 Vue.use(vuelidate)
 Vue.use(messagePlagin)
 Vue.directive('tooltip', tooltipdirective)
