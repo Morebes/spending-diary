@@ -4,6 +4,7 @@ import router from './router'
 import vuelidate from 'vuelidate'
 import dateFilter from '@/filter/date.filter'
 import currencyFilter from '@/filter/currency.filter'
+import tooltipdirective from '@/directives/tooltip.directive'
 import store from './store'
 import messagePlagin from '@/utils/message.plagin'
 import Loader from '@/components/app/Loader'
@@ -21,6 +22,7 @@ Vue.filter("date", dateFilter)
 Vue.filter("currency", currencyFilter)
 Vue.use(vuelidate)
 Vue.use(messagePlagin)
+Vue.directive('tooltip', tooltipdirective)
 Vue.component('Loader', Loader)
 
 
