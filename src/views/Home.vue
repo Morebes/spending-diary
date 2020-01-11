@@ -18,8 +18,8 @@
 </template>
 
 <script>
-import HomeBill from "@/components/HomeBill";
-import HomeCurrency from "@/components/HomeCurrency";
+import HomeBill from "@/components/HomeBill"
+import HomeCurrency from "@/components/HomeCurrency"
 
 export default {
   components: { HomeBill, HomeCurrency },
@@ -32,15 +32,15 @@ export default {
   },
 
   async mounted() {
-    this.currency = await this.$store.dispatch("fetchCurrency");
+    this.currency = await this.$store.dispatch("fetchCurrency")
     this.loading = false;
   },
 
   methods: {
     async refresh() {
-      this.loading = true;
-      this.currency = await this.$store.dispatch("fetchCurrency");
-      this.loading = false;
+      this.loading = true
+      this.currency = await this.$store.dispatch("fetchCurrency")
+      this.loading = false
     }
   }
 };

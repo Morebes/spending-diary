@@ -11,7 +11,6 @@ import Loader from '@/components/app/Loader'
 import './registerServiceWorker'
 import 'materialize-css/dist/js/materialize.min'
 
-
 import firebase from "firebase/app"
 import 'firebase/auth'
 import 'firebase/database'

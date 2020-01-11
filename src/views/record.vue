@@ -1,9 +1,11 @@
 <template>
   <Loader v-if="loading" />
-  <p v-else-if="!categories" class="center">
+  
+  <p v-else-if="!categories.length" class="center">
     категорий пока что нет
     <router-link to="categories">создайте категорию</router-link>
   </p>
+
   <div v-else>
     <div class="page-title">
       <h3>Новая запись</h3>
@@ -92,16 +94,17 @@ export default {
   },
 
   async mounted() {
-    this.categories = await this.$store.dispatch("fetchCategories");
-    this.loading = false;
+    this.categories = await this.$store.dispatch("fetchCategories")
+    this.loading = false
 
     if (this.categories) {
-      this.category = this.categories[0].id;
+      this.category = this.categories[0].id
+
     }
 
     setTimeout(() => {
-      this.select = M.FormSelect.init(this.$refs.select);
-      M.updateTextFields();
+      this.select = M.FormSelect.init(this.$refs.select)
+      M.updateTextFields()
     }, 0);
   },
 
@@ -111,7 +114,7 @@ export default {
         return true;
       }
 
-      return this.$store.getters.info.bill >= this.amount;
+      return this.$store.getters.info.bill >= this.amount
     }
   },
 
@@ -152,9 +155,8 @@ export default {
         }
       } else {
         this.$message(
-          `на счету ${this.$store.getters.info.bill} не хватает ${this.amount -
-            this.$store.getters.info.bill}`
-        );
+          `на счету ${this.$store.getters.info.bill} не хватает ${this.amount - this.$store.getters.info.bill}`
+        )
       }
     }
   },

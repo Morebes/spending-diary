@@ -12,7 +12,7 @@
           v-model.trim="newName"
           :class="{invalid:$v.newName.$dirty && !$v.newName.required}"
         />
-        <label for="Name">Имя</label>
+        <label for="Name">{{name}}</label>
         <span
           class="helper-text invalid"
           v-if="$v.newName.$dirty && !$v.newName.required"
@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { required } from "vuelidate/lib/validators";
+import { required } from "vuelidate/lib/validators"
 
 export default {
   data() {
@@ -49,16 +49,16 @@ export default {
   methods: {
     async submitHendler() {
       if (this.$v.$invalid) {
-        this.$v.$touch();
+        this.$v.$touch()
         return;
       }
 
       const name = this.newName;
 
-      await this.$store.dispatch("updateInfo", { name });
+      await this.$store.dispatch("updateInfo", { name })
       this.$message("имя изменено");
       this.$v.$reset();
-      this.newName = "";
+      this.newName = ""
     }
   }
 };

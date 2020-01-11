@@ -7,7 +7,7 @@
 
     <Loader v-if="loaging" />
 
-    <p v-else-if="!categories" class="center">
+    <p v-else-if="!categories.length" class="center">
       категорий пока что нет
       <router-link to="categories">создайте категорию</router-link>
     </p>
