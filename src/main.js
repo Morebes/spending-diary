@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
 import vuelidate from 'vuelidate'
+import Paginate from 'vuejs-paginate'
 import dateFilter from '@/filter/date.filter'
 import currencyFilter from '@/filter/currency.filter'
 import tooltipdirective from '@/directives/tooltip.directive'
@@ -23,6 +24,7 @@ Vue.use(vuelidate)
 Vue.use(messagePlagin)
 Vue.directive('tooltip', tooltipdirective)
 Vue.component('Loader', Loader)
+Vue.component('Paginate', Paginate)
 
 
 let app
